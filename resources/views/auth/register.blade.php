@@ -7,7 +7,6 @@
         </x-slot>
         <div>
           Registro de usuario
-          <span>Ingresa los datos que se te piden</span>
         </div>
         <hr>
         <!-- Validation Errors -->
@@ -51,7 +50,7 @@
 
             <div class="flex items-center justify-end mt-4">
                 <a class="underline text-sm text-gray-600 hover:text-gray-900" href="{{ route('login') }}">
-                    {{ __('¿Ya estás registrado?') }}
+                    {{ __('¿Ya te registraste?') }}
                 </a>
 
                 <x-button class="ml-4 register">
