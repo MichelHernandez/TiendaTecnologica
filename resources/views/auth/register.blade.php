@@ -7,6 +7,7 @@
         </x-slot>
         <div>
           Registro de usuario
+          <span>Ingresa los datos que se te piden</span>
         </div>
         <hr>
         <!-- Validation Errors -->
