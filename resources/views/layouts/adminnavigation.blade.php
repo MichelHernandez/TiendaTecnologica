@@ -12,8 +12,14 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ml-10 sm:flex">
+                    <x-nav-link :href="route('inicio')" :active="request()->routeIs('inicio') | request()->routeIs('inicio')">
+                        {{ __('Inicio') }}
+                    </x-nav-link>
                     <x-nav-link :href="route('admindashboard')" :active="request()->routeIs('admindashboard')">
                         {{ __('Dashboard') }}
+                    </x-nav-link>
+                    <x-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index') | request()->routeIs('productos-*')">
+                        {{ __('Productos') }}
                     </x-nav-link>
                 </div>
             </div>
@@ -63,8 +69,14 @@
     <!-- Responsive Navigation Menu -->
     <div :class="{'block': open, 'hidden': ! open}" class="hidden sm:hidden">
         <div class="pt-2 pb-3 space-y-1">
-            <x-responsive-nav-link :href="route('admindashboard')" :active="request()->routeIs('dashboard')">
+            <x-responsive-nav-link :href="route('inicio')" :active="request()->routeIs('inicio') | request()->routeIs('inicio')">
+                {{ __('Inicio') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('admindashboard')" :active="request()->routeIs('admindashboard')">
                 {{ __('Dashboard') }}
+            </x-responsive-nav-link>
+            <x-responsive-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index') | request()->routeIs('productos-*')">
+                {{ __('Productos') }}
             </x-responsive-nav-link>
         </div>
 
