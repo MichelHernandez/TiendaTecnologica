@@ -25,7 +25,11 @@ class ProductController extends Controller
             $productos = Product::all();
             return view('productos.index', ['productos' => $productos]);
         }
-        return redirect()->route('dashboard');
+        else{
+            $productos = Product::all();
+            return view('productos.public-index', ['productos' => $productos]);
+        }
+
     }
 
     /**
@@ -64,7 +68,7 @@ class ProductController extends Controller
                 'add_category' => ['nullable','string', 'max:255'],
                 'new_category' => ['string', 'max:255'],
             ]);
-    
+
             if ($request->hasFile('image') && $request->file('image')->isValid()) {
                 $file = $request->file('image');
                 $name = time() . $file->getClientOriginalName();
@@ -72,7 +76,7 @@ class ProductController extends Controller
             }else {
                 $name = 'default.png';
             }
-    
+
             $producto = new Product();
             $producto->description = Str::ucfirst($validated['description']);
             $producto->name = Str::ucfirst($validated['productname']);
@@ -80,7 +84,7 @@ class ProductController extends Controller
             $producto->price = $validated['price'];
             $producto->stock = $validated['stock'];
             $producto->image = $name;
-    
+
             if (!$request->has('category')) {
                 $cat = Str::ucfirst($validated['add_category']);
             }else if($request->has('new_category')){
@@ -88,17 +92,17 @@ class ProductController extends Controller
             }else {
                 $cat = Str::ucfirst($validated['category']);
             }
-    
+
             $category = Category::firstOrNew([
                 'description' => $cat
             ]);
             $category->save();
             $producto->category()->associate($category);
             $producto->save();
-    
+
             return redirect()->route('productos-create')->with('status', 'Se ha creado el nuevo producto');
             // return redirect('dashboard')->with('status', 'Profile updated!');
-            
+
         }
         return redirect()->route('dashboard');
     }
@@ -116,7 +120,10 @@ class ProductController extends Controller
             $producto = Product::findOrFail($id);
             return view('productos.show', ['producto' => $producto]);
         }
-        return redirect()->route('dashboard');
+        else{
+            $producto = Product::findOrFail($id);
+            return view('productos.show-public', ['producto' => $producto]);
+        }
     }
 
     /**
@@ -188,7 +195,7 @@ class ProductController extends Controller
             $producto->price = $validated['price'];
             $producto->stock = $validated['stock'];
             $producto->image = $name;
-    
+
             if (!$request->has('category')) {
                 $cat = Str::ucfirst($validated['add_category']);
             }else if($request->has('new_category')){
@@ -196,14 +203,14 @@ class ProductController extends Controller
             }else {
                 $cat = Str::ucfirst($validated['category']);
             }
-    
+
             $category = Category::firstOrNew([
                 'description' => $cat
             ]);
             $category->save();
             $producto->category()->associate($category);
             $producto->save();
-    
+
             return redirect()->route('productos-show', ['id' => $producto->id])->with('status', 'Se ha Actualizado este producto');
         }
         return redirect()->route('dashboard');
