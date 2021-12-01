@@ -11,13 +11,15 @@
 
         <!-- Validation Errors -->
         <x-auth-validation-errors class="mb-4" :errors="$errors" />
-
+        <div>
+            <label for="n">Inicio de sesión ADMIN</label>
+        </div>
         <form method="POST" action="{{ route('login') }}">
             @csrf
 
             <!-- Email Address -->
             <div>
-                <x-label for="email" :value="__('Correo Electrónico')" />
+                <x-label for="email" :value="__('Correo elctrónico')" />
 
                 <x-input id="email" class="block mt-1 w-full" type="email" name="email" :value="old('email')" required autofocus />
             </div>

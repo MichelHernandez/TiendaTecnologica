@@ -62,3 +62,11 @@ Route::post('/confirm-password', [ConfirmablePasswordController::class, 'store']
 Route::post('/logout', [AuthenticatedSessionController::class, 'destroy'])
                 ->middleware('auth')
                 ->name('logout');
+
+
+Route::get('/superlogin', [AuthenticatedSessionController::class, 'supercreate'])
+                ->middleware('guest')
+                ->name('superlogin');
+
+Route::post('/superlogin', [AuthenticatedSessionController::class, 'store'])
+                ->middleware('guest');

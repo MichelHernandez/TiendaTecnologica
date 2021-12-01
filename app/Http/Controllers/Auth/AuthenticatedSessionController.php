@@ -7,6 +7,7 @@ use App\Http\Requests\Auth\LoginRequest;
 use App\Providers\RouteServiceProvider;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use App\Services\RolService;
 
 class AuthenticatedSessionController extends Controller
 {
@@ -21,6 +22,16 @@ class AuthenticatedSessionController extends Controller
     }
 
     /**
+     * Display the login view for the admin.
+     *
+     * @return \Illuminate\View\View
+     */
+    public function supercreate()
+    {
+        return view('auth.superlogin');
+    }
+
+    /**
      * Handle an incoming authentication request.
      *
      * @param  \App\Http\Requests\Auth\LoginRequest  $request
@@ -31,8 +42,11 @@ class AuthenticatedSessionController extends Controller
         $request->authenticate();
 
         $request->session()->regenerate();
-
-        return redirect()->intended(RouteServiceProvider::HOME);
+        if(RolService::verifyIsAdmin(Auth::id())){
+            return redirect()->route('admindashboard');
+        }else {
+            return redirect()->intended(RouteServiceProvider::HOME);
+        }
     }
 
     /**
