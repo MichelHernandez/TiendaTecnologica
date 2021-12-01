@@ -16,6 +16,9 @@
                         {{ __('Inicio') }}
                     </x-nav-link>
                     @guest
+                        <x-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index')">
+                            {{ __('Catalogo') }}
+                        </x-nav-link>
                         <x-nav-link :href="route('login')" :active="request()->routeIs('login')">
                             {{ __('Iniciar Sesión') }}
                         </x-nav-link>
@@ -30,6 +33,10 @@
                     </x-nav-link>
                     <x-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index') | request()->routeIs('productos-*')">
                         {{ __('Productos') }}
+                    </x-nav-link>
+                    @else
+                    <x-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index')">
+                        {{ __('Catalogo') }}
                     </x-nav-link>
                     @endif
                     @endauth
@@ -87,6 +94,9 @@
                 {{ __('Inicio') }}
             </x-responsive-nav-link>
             @guest
+            <x-responsive-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index')">
+                {{ __('Catalogo') }}
+            </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('login')" :active="request()->routeIs('login')">
                 {{ __('Iniciar Sesión') }}
             </x-responsive-nav-link>
@@ -101,6 +111,10 @@
             </x-responsive-nav-link>
             <x-responsive-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index') | request()->routeIs('productos-*')">
                 {{ __('Productos') }}
+            </x-responsive-nav-link>
+            @else
+            <x-responsive-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index')">
+                {{ __('Catalogo') }}
             </x-responsive-nav-link>
             @endif
             @endauth
