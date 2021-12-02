@@ -13,6 +13,17 @@ use Illuminate\Support\Str;
 class ProductController extends Controller
 {
     /**
+     * Display a the welcome view with products.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function welcome()
+    {
+        $productos = Product::all();
+        return view('welcome', ['productos' => $productos]);
+    }
+
+    /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
@@ -185,17 +196,15 @@ class ProductController extends Controller
                 $file = $request->file('image');
                 $name = time() . $file->getClientOriginalName();
                 $file->move(public_path().'/images/', $name);
-            }else {
-                $name = 'default.png';
+                $producto->image = $name;
             }
-
+            
             $producto->description = Str::ucfirst($validated['description']);
             $producto->name = Str::ucfirst($validated['productname']);
             $producto->sku = $validated['sku'];
             $producto->price = $validated['price'];
             $producto->stock = $validated['stock'];
-            $producto->image = $name;
-
+    
             if (!$request->has('category')) {
                 $cat = Str::ucfirst($validated['add_category']);
             }else if($request->has('new_category')){

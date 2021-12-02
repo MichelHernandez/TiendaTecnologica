@@ -15,9 +15,7 @@ use App\Http\Controllers\ProductController;
 |
 */
 
-Route::get('/', function () {
-    return view('welcome');
-})->name('inicio');
+Route::get('/', [ProductController::class, 'welcome'])->name('inicio');
 
 Route::get('/admin-dashboard', [DashboardController::class, 'superIndex'])->middleware(['auth'])->name('admindashboard');
 Route::get('/dashboard', [DashboardController::class, 'index'])->name('dashboard');
