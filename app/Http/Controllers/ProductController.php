@@ -30,17 +30,16 @@ class ProductController extends Controller
      */
     public function index()
     {
-        // Retrieve the currently authenticated user's ID...
-        $user = Auth::id();
-        if(RolService::verifyIsAdmin($user)){
-            $productos = Product::all();
-            return view('productos.index', ['productos' => $productos]);
+        if (Auth::check()) {
+           // Retrieve the currently authenticated user's ID...
+            $user = Auth::id();
+            if(RolService::verifyIsAdmin($user)){
+                $productos = Product::all();
+                return view('productos.index', ['productos' => $productos]);
+            }
         }
-        else{
-            $productos = Product::all();
-            return view('productos.public-index', ['productos' => $productos]);
-        }
-
+        $productos = Product::all();
+        return view('productos.public-index', ['productos' => $productos]);
     }
 
     /**

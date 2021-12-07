@@ -18,11 +18,16 @@
                     <x-nav-link :href="route('productos-index')" :active="request()->routeIs('productos-index')">
                         {{ __('Catalogo') }}
                     </x-nav-link>
-                    @if (count(Cart::getContent()))
                     <x-nav-link :href="route('cart.checkout')" :active="request()->routeIs('cart.checkout')">
-                            Carrito: {{count(Cart::getContent())}}
+                    Carrito: 
+                        @if (count(Cart::getContent()))
+                            {{count(Cart::getContent())}}
+                        @endif
                     </x-nav-link>
-                    @endif
+                    
+                    <x-nav-link :href="route('compras')" :active="request()->routeIs('compras')">
+                        {{ __('Compras') }}
+                    </x-nav-link>
                 </div>
             </div>
 
