@@ -4,6 +4,8 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\CartController;
+use App\Http\Controllers\PaymentController;
+use App\Http\Controllers\CompraController;
 
 /*
 |--------------------------------------------------------------------------
@@ -44,5 +46,12 @@ Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.up
 Route::post('/cart-clear',[CartController::class, 'clear'])->name('cart.clear');
 
 Route::post('/cart-remove',[CartController::class, 'remove'])->name('cart.remove');
+
+Route::get('/compras', [CompraController::class, 'index'])->name('compras');
+
+
+//Paypal
+Route::get('/paypal/pago/{monto}', [PaymentController::class, 'payWithPaypal'])->name('pago');
+Route::get('/paypal/status', [PaymentController::class, 'payPalStatus'])->name('pago-estado');
 
 require __DIR__.'/auth.php';

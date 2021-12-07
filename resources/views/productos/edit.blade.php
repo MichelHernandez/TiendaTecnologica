@@ -7,9 +7,13 @@
             if(check.checked){
                 document.getElementById('category').disabled = true;
                 document.getElementById('add_category').disabled = false;
+                document.getElementById('category').required = false;
+                document.getElementById('add_category').required = true;
             }else{
                 document.getElementById('category').disabled = false;
                 document.getElementById('add_category').disabled = true;
+                document.getElementById('category').required = true;
+                document.getElementById('add_category').required = false;
             }
         }
     </script>

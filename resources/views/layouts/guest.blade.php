@@ -23,7 +23,16 @@
     </head>
     <body>
     <div class="min-h-screen bg-gray-100">
+            @auth
+            @if(Auth::user()->rol_id == 777)
+                @include('layouts.adminnavigation')
+            @else
+                @include('layouts.navigation')
+            @endif
+            @endauth
+            @guest
             @include('layouts.publicnavigation')
+            @endguest
 
             <!-- Page Content -->
             <div class="font-sans text-gray-900 antialiased">
