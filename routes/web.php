@@ -3,6 +3,7 @@
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\DashboardController;
 use App\Http\Controllers\ProductController;
+use App\Http\Controllers\CartController;
 
 /*
 |--------------------------------------------------------------------------
@@ -34,5 +35,14 @@ Route::get('/productos/{id}/eliminar', function($id){
 })->middleware(['auth'])->name('productos-delete');
 Route::delete('/productos/{id}/eliminar', [ProductController::class, 'destroy'])->middleware(['auth'])->name('productos-destroy');
 
+Route::post('/cart-add',[CartController::class, 'add'])->name('cart.add');
+
+Route::get('/checkout',[CartController::class, 'cart'])->name('cart.checkout');
+
+Route::post('update-cart', [CartController::class, 'updateCart'])->name('cart.update');
+
+Route::post('/cart-clear',[CartController::class, 'clear'])->name('cart.clear');
+
+Route::post('/cart-remove',[CartController::class, 'remove'])->name('cart.remove');
 
 require __DIR__.'/auth.php';

@@ -38,7 +38,13 @@
                 </p>
               </div>
               <div class="p-6 bg-white border-b border-gray-200 mx-auto">
-                <a href="{{ route('dashboard') }}" class="text-center border-b rounded-lg text-blue-50 bg-blue-800 mx-auto p-2 shadow hover:text-blue-900 hover:bg-white">Comprar</a>
+                    <form action="{{ route('cart.add') }}" method="post">
+                        @csrf
+                        <input type="hidden" name="product_id" value="{{$producto->id}}" >
+                        <input type="hidden" value="{{ $producto->image }}"  name="image">
+                        <input type="hidden" value="1" name="quantity">
+                        <input type="submit" name="btn" value="Añadir a carrito" class="text-center border-b rounded-lg text-blue-50 bg-blue-800 mx-auto p-2 shadow hover:text-blue-900 hover:bg-white">
+                    </form>
             </div>
             </div>
               </div>

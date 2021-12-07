@@ -19,7 +19,7 @@ class ProductController extends Controller
      */
     public function welcome()
     {
-        $productos = Product::all();
+        $productos = Product::paginate(8);
         return view('welcome', ['productos' => $productos]);
     }
 
@@ -198,13 +198,13 @@ class ProductController extends Controller
                 $file->move(public_path().'/images/', $name);
                 $producto->image = $name;
             }
-            
+
             $producto->description = Str::ucfirst($validated['description']);
             $producto->name = Str::ucfirst($validated['productname']);
             $producto->sku = $validated['sku'];
             $producto->price = $validated['price'];
             $producto->stock = $validated['stock'];
-    
+
             if (!$request->has('category')) {
                 $cat = Str::ucfirst($validated['add_category']);
             }else if($request->has('new_category')){
