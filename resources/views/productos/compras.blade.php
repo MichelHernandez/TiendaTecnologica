@@ -80,7 +80,7 @@
                                     @else
                                         <tr>
                                             <td colspan="5" class="px-6 py-4 whitespace-nowrap text-center text-sm text-gray-500">
-                                                No hay bajas aún
+                                                No hay compras aún
                                             </td>
                                         </tr>
                                     @endif
